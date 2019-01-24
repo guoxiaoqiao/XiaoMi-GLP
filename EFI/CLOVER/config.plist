@@ -89,6 +89,8 @@
 			<dict>
 				<key>#Comment-IRQ Fix</key>
 				<string>The following fixes may be needed for onboard audio/USB/etc</string>
+				<key>AddPNLF</key>
+				<true/>
 			</dict>
 			<key>Patches</key>
 			<array>
@@ -293,7 +295,7 @@
 	<key>Boot</key>
 	<dict>
 		<key>Arguments</key>
-		<string>-lilubetaall debug=0x100 -disablegfxfirmware -v darkwake=8</string>
+		<string>igfxcflbklt=force -disablegfxfirmware -lilubetaall darkwake=8</string>
 		<key>CustomLogo</key>
 		<string>Apple</string>
 		<key>DefaultVolume</key>
@@ -323,7 +325,9 @@
 		<key>Audio</key>
 		<dict>
 			<key>Inject</key>
-			<integer>0</integer>
+			<string>No</string>
+			<key>ResetHDA</key>
+			<true/>
 		</dict>
 		<key>FakeID</key>
 		<dict>
@@ -332,6 +336,13 @@
 		</dict>
 		<key>Properties</key>
 		<dict>
+			<key>PciRoot(0x0)/Pci(0x1f,0x3)</key>
+			<dict>
+				<key>layout-id</key>
+				<data>
+				AgAAAA==
+				</data>
+			</dict>
 			<key>PciRoot(0x0)/Pci(0x2,0x0)</key>
 			<dict>
 				<key>AAPL,ig-platform-id</key>
@@ -343,6 +354,10 @@
 				mz4AAA==
 				</data>
 				<key>disable-external-gpu</key>
+				<data>
+				AQAAAA==
+				</data>
+				<key>enable-cflbklt</key>
 				<data>
 				AQAAAA==
 				</data>
@@ -424,6 +439,14 @@
 				</dict>
 			</array>
 		</dict>
+		<key>Hide</key>
+		<array>
+			<string>Preboot</string>
+			<string>Legacy HD1</string>
+			<string>Legacy HD3</string>
+			<string>Legacy HD4</string>
+			<string>Recovery</string>
+		</array>
 		<key>Mouse</key>
 		<dict>
 			<key>Enabled</key>
@@ -434,9 +457,9 @@
 			<key>Entries</key>
 			<true/>
 			<key>Legacy</key>
-			<true/>
+			<false/>
 			<key>Linux</key>
-			<true/>
+			<false/>
 			<key>Tool</key>
 			<true/>
 		</dict>
